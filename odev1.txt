@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+	<?php
+		// Prints the day
+		date_default_timezone_set('Asia/Bishkek');
+		echo date("l") . "<br>";
+
+		// Prints the day, date, month, year, time, AM or PM
+		echo date("l jS \of F Y h:i:s A") . "<br>";
+		//echo date_parse(("l jS \of F Y h:i:s")) . "<br>"
+		echo idate("H") . "<br>";
+		$time = idate("H");
+		if($time<12) echo "Good Morning" . "<br>";
+		else if($time>=12 and $time<17) echo "Good Afternoon ". "<br>";
+		else if($time>=17 and $time<22) echo "Good Evening ". "<br>";
+		else echo "Good night" . "<br>";
+	// Prints October 3, 1975 was on a Friday
+	//echo "Oct 3,1975 was on a ".date("l", mktime(0,0,0,10,3,1975)) . "<br>";
+
+	// Use a constant in the format parameter
+	//echo date(DATE_RFC822) . "<br>";
+
+	// prints something like: 1975-10-03T00:00:00+00:00
+	//echo date(DATE_ATOM,mktime(0,0,0,10,3,1975));
+	?>
+  
+	<form action="index.php" method="post" >
+		<input type="text" name="name" placeholder = "name" ><br>
+		<input type="text" name="surname" placeholder = "surname"><br>
+		<input type="submit">
+	</form>
+	
+	<textarea name="comment" rows="2" cols="40">
+		<?php 
+			echo $_POST["name"];
+			echo " "; 
+			echo $_POST["surname"];	?>
+	</textarea>
+	
+	<br><select> 
+		<?php for ($year=2019; $year>1949; $year--)
+		{ echo '<option>' .$year. '</option>'; } ?> 
+	</select>
+
+	<select> 
+		<?php for ($month=1; $month<13; $month++)
+		{ echo '<option>' .$month. '</option>'; } ?> 
+	</select>
+	
+	<select> 
+		<?php for ($day=1; $day<32; $day++)
+		{ echo '<option>' .$day. '</option>'; } ?> 
+	</select>
+	
+	<table align="center" border="4" cellpadding="3" cellspacing="0" style = "100%" >
+		<?php
+			for($i=1;$i<=9;$i++)
+			{
+				if($i==1)
+				{
+					for ($j=1;$j<=9;$j++)
+				{
+					//width = '10%'
+					echo "<td>$j</td>";
+				}
+				} 
+				echo "<tr>";
+				for ($j=1;$j<=9;$j++)
+				{
+					echo "<td>$i * $j = ".$i*$j."</td>";
+					//echo "<td></td>";
+				}
+				echo "</tr>";
+			}
+		?>
+	</table>
+</body>
+</html>
+
